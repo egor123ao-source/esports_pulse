@@ -1,5 +1,5 @@
 // Сеть в приоритете: офлайн-кэш хранит оболочку, но не подменяет свежие данные API.
-const VERSION = 'ep-v2';
+const VERSION = 'ep-v3';
 const SHELL_CACHE = VERSION;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = ['/', '/index.html', '/styles.css', '/app.js', '/app-core.js', '/icon.svg'];

@@ -111,8 +111,16 @@ function newsList() {
 function renderNews() {
   const saved = arrayStore('bk'), sources = [...new Set(news.map(n => n.src))];
   chips('#nf', [['Все', 'Все источники'], ...sources.map(x => [x, x]), ['saved', `Сохранённые (${saved.length})`]], newsSource, next => { newsSource = next; newsLimit = 6; renderNews(); });
-  const language = document.createElement('button'); language.type = 'button'; language.className = 'mo'; language.textContent = original ? 'Показать перевод' : 'Показать оригинал'; language.setAttribute('aria-pressed', String(original));
-  language.onclick = () => { original = !original; save('orig', original); renderNews(); renderHero(); }; $('#nf').append(language);
+  const filters = $('#nf');
+  let language = filters.querySelector('[data-news-language]');
+  if (!language) {
+    language = document.createElement('button'); language.type = 'button'; language.className = 'mo';
+    language.setAttribute('data-news-language', '');
+    language.onclick = () => { original = !original; save('orig', original); renderNews(); renderHero(); };
+    filters.append(language);
+  }
+  language.textContent = original ? 'Показать перевод' : 'Показать оригинал';
+  language.setAttribute('aria-pressed', String(original));
   $('#news-status').innerHTML = statusMarkup(newsState, 'news');
   const all = newsList(), visible = all.slice(0, newsLimit);
   $('#ng').innerHTML = visible.length ? visible.map((n, i) => {
