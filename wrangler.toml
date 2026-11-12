@@ -1,0 +1,16 @@
+name = "esports-pulse-api"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# перевод новостей (Workers AI)
+[ai]
+binding = "AI"
+
+# хранилище подписчиков бота и кэша переводов; id вставьте после команды wrangler kv namespace create KV
+[[kv_namespaces]]
+binding = "KV"
+id = "03b7f71909ae485e8d26f752b3cdfb2b"
+
+# каждые 5 минут: напоминания о матчах; раз в сутки (06:00 UTC = 11:00 в Казахстане): дайджест
+[triggers]
+crons = ["*/5 * * * *", "0 6 * * *"]

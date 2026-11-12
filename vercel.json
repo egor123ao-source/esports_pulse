@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/player/:path*", "destination": "/index.html" },
+    { "source": "/team/:path*", "destination": "/index.html" },
+    { "source": "/tournament/:path*", "destination": "/index.html" }
+  ],
+  "headers": [
+    { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] }
+  ]
+}
