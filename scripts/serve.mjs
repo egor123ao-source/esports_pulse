@@ -2,21 +2,9 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { PUBLIC_ASSETS as PUBLIC_FILES } from './public-assets.mjs';
 
 const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const PUBLIC_FILES = new Map([
-  ['index.html', 'text/html; charset=utf-8'],
-  ['app.js', 'text/javascript; charset=utf-8'],
-  ['app-core.js', 'text/javascript; charset=utf-8'],
-  ['styles.css', 'text/css; charset=utf-8'],
-  ['sw.js', 'text/javascript; charset=utf-8'],
-  ['manifest.webmanifest', 'application/manifest+json; charset=utf-8'],
-  ['icon.svg', 'image/svg+xml'],
-  ['icon-192.png', 'image/png'],
-  ['icon-512.png', 'image/png'],
-  ['og.png', 'image/png'],
-]);
-
 // Явный список публичных файлов не позволяет случайно отдать конфиги и секреты.
 export function publicFileForUrl(rawUrl) {
   let pathname;

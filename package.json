@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "node --check app.js && node --check app-core.js && node --check worker.js && node --check sw.js"
   },

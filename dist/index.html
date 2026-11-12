@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Esports Pulse: новости и матчи киберспорта</title>
+  <meta name="description" content="Матчи киберспорта в эфире, расписание и результаты. Следите за любимыми командами, турнирами, игроками и новостями.">
+  <meta property="og:title" content="Esports Pulse">
+  <meta property="og:description" content="Матчи, любимые команды и главные новости киберспорта — в одном месте.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/og.png">
+  <meta property="og:image:alt" content="Esports Pulse — новости и матчи киберспорта">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f5efdf" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#040606" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header>
+    <a class="lg" href="#main" aria-label="Esports Pulse — главная">Esports<i>Pulse</i></a>
+    <nav aria-label="Основная навигация">
+      <a href="#matches">Матчи</a>
+      <a href="#favorites">Избранное</a>
+      <a href="#news">Новости</a>
+      <a href="#tours">Турниры</a>
+      <a href="#players">Игроки</a>
+    </nav>
+    <button id="tg" type="button" aria-label="Сменить тему" title="Сменить тему">◐</button>
+  </header>
+  <main id="main" tabindex="-1">
+    <noscript><div class="state-box"><h2>Включите JavaScript</h2><p>Для загрузки матчей, новостей и поиска игроков нужен JavaScript. Включите его в настройках браузера и обновите страницу.</p></div></noscript>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="intro-copy">
+        <p class="eyebrow">В ритме киберспорта</p>
+        <h1 id="intro-title">Ваша игра. Ваши команды.</h1>
+        <p>Следите за матчами, болейте за своих и будьте в курсе главного.</p>
+      </div>
+      <div class="game-picker">
+        <p class="field-label" id="game-label">Что смотрим?</p>
+        <div class="ch" id="global-games" role="group" aria-labelledby="game-label"></div>
+      </div>
+    </section>
+
+    <section class="content-section" aria-labelledby="matches">
+      <div class="section-head"><h2 class="st" id="matches">Матчи</h2><span class="ds" id="timezone"></span></div>
+      <div class="ch match-tabs" id="mt" aria-label="Статус матчей"></div>
+      <div class="ch" id="mf" role="group" aria-label="Игра в расписании"></div>
+      <div class="toolbar">
+        <div class="ch" id="match-days" role="group" aria-label="Период расписания"></div>
+        <input class="sr" id="match-search" type="search" placeholder="Команда или турнир" aria-label="Поиск команды или турнира в матчах" autocomplete="off">
+        <label class="check-label"><input type="checkbox" id="hide-scores">Скрыть результаты</label>
+      </div>
+      <div class="status-line" id="match-status" role="status" aria-live="polite"></div>
+      <div class="gr" id="mg"></div>
+      <div class="load-more" id="match-more"></div>
+    </section>
+
+    <section class="content-section favorites-section" id="myw" aria-labelledby="favorites">
+      <div class="section-head"><h2 class="st" id="favorites">Избранное</h2><span class="ds">Ближе к своим</span></div>
+      <div class="ch" id="followed-teams" aria-label="Ваши команды"></div>
+      <div class="status-line" id="my-status" role="status" aria-live="polite"></div>
+      <div class="gr" id="mym"></div>
+    </section>
+
+    <section class="content-section" aria-labelledby="news">
+      <div class="section-head"><h2 class="st" id="news">Новости</h2><span class="ds">Главное в игре и за её пределами</span></div>
+      <div class="status-line" id="news-status" role="status" aria-live="polite"></div>
+      <section class="hero" id="hero" aria-label="Главные новости"></section>
+      <input class="sr" id="nq" type="search" placeholder="Поиск по новостям" aria-label="Поиск по новостям" autocomplete="off">
+      <div class="ch" id="nf" role="group" aria-label="Источники и сохранённые новости"></div>
+      <div class="gr" id="ng"></div>
+      <div class="load-more" id="news-more"></div>
+    </section>
+
+    <section class="content-section" aria-labelledby="tours">
+      <div class="section-head"><h2 class="st" id="tours">Турниры</h2></div>
+      <div class="ch" id="tgf" role="group" aria-label="Игра в турнирах"></div>
+      <div class="status-line" id="tour-status" role="status" aria-live="polite"></div>
+      <div id="trg"></div>
+    </section>
+
+    <section class="content-section" aria-labelledby="players">
+      <div class="section-head"><h2 class="st" id="players">Игроки</h2><span class="ds">Составы, статистика и сравнение</span></div>
+      <input class="sr" id="q" type="search" placeholder="Ник или команда, например Falcons kyousuke" aria-label="Поиск игрока или команды" autocomplete="off">
+      <div class="status-line ds" id="sh" role="status" aria-live="polite"></div>
+      <div class="ch" id="pf" role="group" aria-label="Игра для поиска игроков"></div>
+      <div id="fv"></div>
+      <div class="gr" id="pg"></div>
+      <div class="load-more" id="pm"></div>
+    </section>
+  </main>
+
+  <div class="compare-tray" id="compare-tray" aria-label="Выбранные игроки для сравнения" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="dl" aria-label="Подробности">
+    <div class="dialog-actions"><button class="mo" id="dx" type="button">Закрыть</button></div>
+    <div id="pr"></div>
+  </dialog>
+  <footer>
+    <a class="footer-brand" href="#main">Esports Pulse</a>
+    <p>Данные: PandaScore, <a href="https://liquipedia.net" target="_blank" rel="noopener">Liquipedia</a> (CC-BY-SA 3.0).<br>Новости: Dot Esports, Dexerto, Esports Insider, HLTV, Cybersport.ru, Sports.ru.</p>
+  </footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
